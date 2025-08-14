@@ -1,5 +1,6 @@
 <?php
-
+declare(strict_types = 1);
+require_once "../vendor/autoload.php";
 
 class SignUpContr extends Auth
 {
@@ -11,7 +12,7 @@ class SignUpContr extends Auth
     private $email;
     private $signupErrors = [];
 
-    public function __construct($firstName, $lastName, $pwd, $pwd_confirm, $email, $telephone)
+    public function __construct($firstName=null, $lastName=null, $pwd=null, $pwd_confirm=null, $email=null, $telephone=null)
     {
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -20,42 +21,51 @@ class SignUpContr extends Auth
         $this->email = $email;
         $this->telephone = $telephone;
     }
-    public function signupUser(){
+    public function signupUser()
+    {
 
-    if ($this->emailExists($this->email) === 1) {
-        $this->signupErrors["email_used"] = "Invalid Input";
+        if ($this->emailExists($this->email) === 1) {
+            $this->signupErrors["email_used"] = "Invalid Input";
+        }
+        if ($this->pwdMatch() == false) {
+            $this->signupErrors["password_mismatch"] = "Password Mismatch";
+        }
+        if ($this->is_email_invalid() == true) {
+            $this->signupErrors["invalid_email"] = "Invalid email used!";
+        }
+
+
+        if ($this->signupErrors) {
+            $_SESSION["errors_signup"] = $this->signupErrors;
+            header("location: ../index.php?signup=failed");
+            exit();
+        }
+
+        $this->register_user($this->email,  $this->firstName, $this->pwd, $this->lastName, $this->telephone);
+        header("location: ../index.php?signup=success");
     }
-    if ($this->pwdMatch() == false) {
-        $this->signupErrors["password_mismatch"] = "Password Mismatch";
-    }
-    if ($this->is_email_invalid() == true) {
-        $this->signupErrors["invalid_email"] = "Invalid email used!";
-    }
 
-
-    if ($this->signupErrors){
-        $_SESSION["errors_signup"] = $this->signupErrors;
-        header("location: ../index.php?signup=failed");
-        exit();
+    public function factoryCreate(int $num){
+        $faker = Faker\Factory::create();
+        for ($i=0; $i < $num; $i++) { 
+            $this->register_user($faker->freeEmail,$faker->firstName,$faker->password(8),$faker->lastName,$faker->unique()->numerify("+237 677######"));
+        }
     }
 
-     $this->register_user( $this->email,  $this->firstName, $this->pwd,$this->lastName,$this->telephone);
-    header("location: ../index.php?signup=success");
-}
 
-
-    private function is_email_invalid(){
+    private function is_email_invalid()
+    {
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
-    private function pwdMatch(){
+    private function pwdMatch()
+    {
         if ($this->pwd === $this->pwd_confirm) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }

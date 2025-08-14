@@ -27,7 +27,7 @@ CREATE TABLE products (
     id_prod INT NOT NULL AUTO_INCREMENT,
     user_id INT NOT NULL,
     code_prod VARCHAR(255) NOT NULL,
-    num_prod TEXT NOT NULL,
+    name_prod TEXT NOT NULL,
     description TEXT NOT NULL,
     image TEXT,
     weight DECIMAL(10,2) NOT NULL,
@@ -41,3 +41,4 @@ CREATE TABLE products (
         ON UPDATE CASCADE
 );
 
+"../assets/images/1.jpg","../assets/images/2.jpg","../assets/images/3.jpg","../assets/images/4.jpg","../assets/images/5.jpg","../assets/images/6.jpg","../assets/images/7.jpg","../assets/images/8.jpg","../assets/images/9.jpg","../assets/images/10.jpg","../assets/images/11.jpg","../assets/images/12.jpg","../assets/images/13.jpg","../assets/images/14.jpg","../assets/images/15.jpg","../assets/images/16.jpg"

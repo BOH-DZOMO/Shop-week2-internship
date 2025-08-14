@@ -40,7 +40,19 @@ elseif (isset($_POST["signUp"])) {
         die();
     }
 }
-    
+elseif (isset($_POST["auto-user"])) {
+$number = $_POST["number"];
+
+
+    if (allFieldsFilled([$number])) {
+        $user = new SignUpContr();
+        $user->factoryCreate((int)escape($number));
+     
+    } else {
+        header('location:../pages/first-day-x.php?error=1');
+        die();
+    }
+}
 else {
     header('location:../index.php');
     die();

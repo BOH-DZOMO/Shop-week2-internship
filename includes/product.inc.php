@@ -4,25 +4,31 @@ include_once "autoloader.inc.php";
 
 
 
-// if (isset($_POST[""])) {
+// if (isset($_POST["auto-user"])) {
+// $number = $_POST["number"];
 
 
-
-//     if (allFieldsFilled([])) {
+//     if (allFieldsFilled([$number])) {
+//         $user = new SignUpContr();
+//         $user->factoryCreate((int)escape($number));
      
 //     } else {
-//         header('location:../pages/create_task.php?error=create_task');
+//         header('location:../pages/first-day-x.php?error=1');
 //         die();
 //     }
-// } elseif (isset($_POST[""])) {
-   
+if (isset($_POST["auto-product"])) {
+   $number = $_POST["number"];
 
-//     if (allFieldsFilled([])) {
-//     } else {
-//         header('location:../pages/edit-task.php?error=update_task');
-//         die();
-//     }  
-// }
+    if (allFieldsFilled([$number])) {
+        $product = new ProductContr();
+        $product->factoryCreate((int)escape($number));
+        header('location:../pages/first-day-x.php');
+    } 
+    else {
+        header('location:../pages/first-day-x.php?error=2');
+        die();
+    }  
+}
 // elseif (isset($_POST[""])) {
    
 
