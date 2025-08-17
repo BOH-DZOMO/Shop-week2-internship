@@ -42,3 +42,37 @@ CREATE TABLE products (
 );
 
 "../assets/images/1.jpg","../assets/images/2.jpg","../assets/images/3.jpg","../assets/images/4.jpg","../assets/images/5.jpg","../assets/images/6.jpg","../assets/images/7.jpg","../assets/images/8.jpg","../assets/images/9.jpg","../assets/images/10.jpg","../assets/images/11.jpg","../assets/images/12.jpg","../assets/images/13.jpg","../assets/images/14.jpg","../assets/images/15.jpg","../assets/images/16.jpg"
+
+/* todo */
+verify why the auto porpulating of the db doesnot produce the right amt of data for the given data(for ex if num = 5 it may produce 3)
+
+
+<?php
+// require_once "../classes/Product.class.php";
+require_once "../includes/autoloader.inc.php";
+
+$product = new Product();
+
+$draw = $_POST['draw'];
+$start = $_POST['start'];
+$length = $_POST['length'];
+$search = $_POST['search']['value'] ?? '';
+
+// Count total records
+$total = $product->countProducts();
+
+// Get filtered records
+$data = $product->getProductsServerSide($start, $length, $search);
+$recordsFiltered = $product->countFilteredProducts($search);
+
+// Prepare JSON response
+$response = [
+    "draw" => intval($draw),
+    "recordsTotal" => intval($total),
+    "recordsFiltered" => intval($recordsFiltered),
+    "data" => $data
+];
+
+// Fill `data` array with the rows\
+
+echo json_encode($response);

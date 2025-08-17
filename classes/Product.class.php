@@ -33,11 +33,62 @@ class Product extends Dbh
             return false;
         }
     }
-    public function getProducts(){
-        $query = "SELECT * FROM products";
+    public function getProducts()
+    {
+        $query = "SELECT * FROM products LIMIT 10000";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll();
         $stmt = null;
     }
+    public function countProducts()
+    {
+        $query = "SELECT COUNT(*) AS total FROM `products`";
+        $stmt = $this->connect()->prepare($query);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        return $row['total'];
+        $stmt = null;
+    }
+    public function getProductsServerSide($start, $length, $search)
+    {
+        $query = "SELECT * FROM products";
+
+        if (!empty($search)) {
+            $query .= " WHERE code_prod LIKE :search 
+                  OR name_prod LIKE :search 
+                  OR description LIKE :search";
+        }
+
+        $query .= " ORDER BY created_at DESC LIMIT " . (int)$start . ", " . (int)$length;
+
+        $stmt = $this->connect()->prepare($query);
+
+        if (!empty($search)) {
+            $stmt->bindValue(':search', "%$search%");
+        }
+        $stmt->execute();
+        return $stmt->fetchAll();
+        // return $stmt->fetchAll(PDO::FETCH_NUM);
+    }
+
+    public function countFilteredProducts($search) {
+    $query = "SELECT COUNT(*) as total FROM products";
+    
+    if (!empty($search)) {
+        $query .= " WHERE code_prod LIKE :search 
+                  OR name_prod LIKE :search 
+                  OR description LIKE :search";
+    }
+
+    $stmt = $this->connect()->prepare($query);
+
+    if (!empty($search)) {
+        $stmt->bindValue(':search', "%$search%");
+    }
+
+    $stmt->execute();
+    $row = $stmt->fetch();
+    return $row['total'];
+}
 }

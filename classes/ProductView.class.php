@@ -22,11 +22,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
             ";
             foreach ($data as $key => $value) {       
             echo "      <tr>
-                        <th scope='row'>$c</th>
+                        <td scope='row'>$c</td>
                         <td>{$value['code_prod']}</td>
                         <td>{$value['name_prod']}</td>
                         <td>{$value['description']}</td>
