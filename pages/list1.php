@@ -1,6 +1,10 @@
 <?php
 require_once "./partials/header2.par.php";
+require_once "../includes/config.session.inc.php";
 require_once "../includes/autoloader.inc.php";
+if (!isset($_SESSION["user_id"])) {
+    header("location: ../index.php");
+}
 $view = new ProductView();
 ?>
 <link rel="stylesheet" href="../assets/css/list.css">

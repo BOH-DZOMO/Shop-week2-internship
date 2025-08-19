@@ -46,4 +46,10 @@ class ProductContr extends Product{
 
     }
 
+    public function create(int $user_id, string $code_prod, string $name_prod, string $description, string $image, float $weight, int $cost_price, int $sale_price){
+        $this->addProduct($user_id,$code_prod,$name_prod,$description,$image,$weight,$cost_price,$sale_price);
+        header("location: ../pages/create.php?task=success");
+        exit();
+    }
+
 }
