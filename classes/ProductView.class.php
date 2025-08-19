@@ -9,7 +9,6 @@
                          <table class='table' id='product-table'>
                 <thead>
                     <tr>
-                        <th scope='col'>#</th>
                         <th scope='col'>code</th>
                         <th scope='col'>name</th>
                         <th scope='col'>description</th>
@@ -25,7 +24,6 @@
             ";
             foreach ($data as $key => $value) {       
             echo "      <tr>
-                        <td scope='row'>$c</td>
                         <td>{$value['code_prod']}</td>
                         <td>{$value['name_prod']}</td>
                         <td>{$value['description']}</td>
@@ -34,21 +32,16 @@
                         <td>{$value['cost_price']} XAF</td>
                         <td>{$value['sale_price']} XAF</td>
                         <td>{$value['created_at']}</td>
-                        <td>                        
-                        <div class='action_bar'>
-                        <form action='' method='post'>
-                        <input type='hidden' name='task_id' value='{$value["user_id"]}' >
-                        <button class='btn btn-primary' name='edit_page'>Edit</button>
-                        </form>
-                        <form action='' method='post'>
-                        <input type='hidden' name='task_id' value='{$value["user_id"]}'>
-                        <button type='submit' class='btn btn-danger' id='delete' name='delete_task'>Delete</button>
-                        </form>
-                        <form action='' method='post'>
-                        <input type='hidden' name='task_id' value='{$value["user_id"]}' >
-                        <button  class='btn btn-success' name='complete_task'>Complete</button>
-                        </form>
-                        </div>
+                        <td>
+                        <div class='btn-group'>
+                            <button type='button' class='btn btn-secondary dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
+                                Actions
+                            </button>
+                            <ul class='dropdown-menu'>
+                                <li><a class='dropdown-item d-flex justify-content-around align-items-center' href='#'><span class='fa fa-pen-to-square'></span>Edit</a></li>
+                                <li><a class='dropdown-item d-flex justify-content-evenly align-items-center' href='#'><span class='fa fa-trash'></span>Delete</a></li>
+                            </ul>
+                        </div>                        
                         </td>
                         </tr>
 

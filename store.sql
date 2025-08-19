@@ -76,3 +76,45 @@ $response = [
 // Fill `data` array with the rows\
 
 echo json_encode($response);
+
+
+<?php
+require_once "../assets/libraries/fpdf186/fpdf.php";
+require_once "../includes/autoloader.inc.php";
+//for setmargins 0.6 puts the border at the edge of the paper
+$pdf = new FPDF();
+// $pdf->SetMargins(1,0,200);
+$pdf->SetAutoPageBreak(false, 10);
+$pdf->AddPage();
+$pdf->SetFont('Courier', 'B', 12);
+$pdf->Cell(190, 10, 'Product Table', 1, 1, "C");
+$pdf->Ln(5);
+$pdf->Cell(42, 10, "Code", 1, 0, "C");
+$pdf->Cell(63, 10, "Name", 1, 0, "C");
+$pdf->Cell(25, 10, "Weight", 1, 0, "C");
+$pdf->Cell(30, 10, "Cost Price", 1, 0, "C");
+$pdf->Cell(30, 10, "Sale Price", 1, 1, "C");
+
+$pdf->SetFont('Courier', '', 10);
+
+// `code_prod`, `name_prod`, `description`, `image`, `weight`, `cost_price`, `sale_price`
+
+$product = new Product();
+$data = $product->getProducts();
+$y1 = 0;
+$y2 = 1;
+
+foreach ($data as $key => $value) {
+
+    $pdf->Cell(42, 5, $value["code_prod"], 1, "");
+    $pdf->Cell(63, 5, $value["name_prod"], 1, "");
+    $pdf->Cell(25, 5, $value["weight"], 1, "");
+    $pdf->Cell(30, 5, $value["cost_price"], 1, "");
+    $pdf->Cell(30, 5, $value["sale_price"], 1, "");
+    $pdf->Ln();
+    $pdf->SetAutoPageBreak(true, 10);
+}
+
+
+
+$pdf->Output();

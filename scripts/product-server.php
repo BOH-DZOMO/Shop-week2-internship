@@ -27,17 +27,26 @@ $response = [
 $c = $start + 1;
 foreach ($data as $row) {
     $response['data'][] = [
-        'id' => $c++,
         'code_prod' => $row['code_prod'],
         'name_prod' => $row['name_prod'],
         'description' => $row['description'],
         // 'image' => "<img class='image' src='{$row['image']}'>",
-        'image' => $row['image'],
+        'image' => "<div><img class='image' src='{$row['image']}'></div>",
         'weight' => $row['weight'],
         'cost_price' => $row['cost_price'] . " XAF",
         'sale_price' => $row['sale_price'] . " XAF",
         'created_at' => $row['created_at'],
-        'actions' => "action"
+        'actions' => "
+        <div class='btn-group'>
+    <button type='button' class='btn btn-secondary dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
+        Actions
+    </button>
+    <ul class='dropdown-menu'>
+        <li><a class='dropdown-item d-flex justify-content-around align-items-center' href='#'><span class='fa fa-pen-to-square'></span>Edit</a></li>
+        <li><a class='dropdown-item d-flex justify-content-evenly align-items-center' href='#'><span class='fa fa-trash'></span>Delete</a></li>
+    </ul>
+</div>
+        "
     ];
 }
 

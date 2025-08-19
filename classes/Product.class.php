@@ -34,8 +34,8 @@ class Product extends Dbh
         }
     }
     public function getProducts()
-    {
-        $query = "SELECT * FROM products LIMIT 10000";
+    { 
+        $query = "SELECT * FROM products WHERE `delete_status` = 0 LIMIT 1000";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll();

@@ -4,8 +4,9 @@ require_once "../includes/autoloader.inc.php";
 $view = new ProductView();
 ?>
 <link rel="stylesheet" href="../assets/css/list.css">
-<script src="../assets/libraries/DataTables/datatables.js"></script>
 <link rel="stylesheet" href="../assets/libraries/DataTables/datatables.css">
+<link rel="stylesheet" href="../assets/libraries/Vendor/fontawesome/css/all.css">
+<script src="../assets/libraries/Vendor/fontawesome/js/all.js"></script>
 </head>
 
 <body>
@@ -14,7 +15,6 @@ $view = new ProductView();
             <table class='table' id='product-table'>
                 <thead>
                     <tr>
-                        <th scope='col'>#</th>
                         <th scope='col'>code</th>
                         <th scope='col'>name</th>
                         <th scope='col'>description</th>
@@ -31,9 +31,10 @@ $view = new ProductView();
         </div>
 
     </main>
-    <!-- <script src="../assets/libraries/jquery-ui-1.14.1.custom/external/jquery/jquery.js"></script> -->
+    <script src="../assets/libraries/jquery-ui-1.14.1.custom/external/jquery/jquery.js"></script>
     <!-- <script src="../assets/libraries/DataTables/datatables.min.js"></script> -->
-    <script src="../assets/libraries/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script src="../assets/libraries/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
+    <script src="../assets/libraries/DataTables/datatables.js"></script>
     <script>
         $(document).ready(function() {
             $('#product-table').DataTable({
@@ -44,7 +45,6 @@ $view = new ProductView();
                     type: 'POST',
                     },
                     columns: [
-                        { data: 'id' },
                         { data: 'code_prod' },
                         { data: 'name_prod' },
                         { data: 'description' },

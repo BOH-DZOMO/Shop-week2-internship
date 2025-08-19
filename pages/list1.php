@@ -41,7 +41,7 @@ $view = new ProductView();
     </main>
     <!-- <script src="../assets/libraries/jquery-ui-1.14.1.custom/external/jquery/jquery.js"></script> -->
     <!-- <script src="../assets/libraries/DataTables/datatables.min.js"></script> -->
-    <script src="../assets/libraries/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script src="../assets/libraries/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script>
         $(document).ready(function() {
             $('#product-table').DataTable({
