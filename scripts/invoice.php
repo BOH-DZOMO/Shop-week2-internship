@@ -30,6 +30,7 @@ $pdf->SetAutoPageBreak(true, 10);
 $pdf->AddPage();
 
 
+
 // `code_prod`, `name_prod`, `description`, `image`, `weight`, `cost_price`, `sale_price`
 
 $product = new Product();
