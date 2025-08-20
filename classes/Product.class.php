@@ -34,7 +34,7 @@ class Product extends Dbh
         }
     }
     public function getProducts()
-    { 
+    {
         $query = "SELECT * FROM products WHERE `delete_status` = 0 LIMIT 1000";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
@@ -72,32 +72,43 @@ class Product extends Dbh
         // return $stmt->fetchAll(PDO::FETCH_NUM);
     }
 
-    public function countFilteredProducts($search) {
-    $query = "SELECT COUNT(*) as total FROM products WHERE delete_status = 0";
-    
-    if (!empty($search)) {
-        $query .= " WHERE code_prod LIKE :search 
+    public function countFilteredProducts($search)
+    {
+        $query = "SELECT COUNT(*) as total FROM products WHERE delete_status = 0";
+
+        if (!empty($search)) {
+            $query .= " WHERE code_prod LIKE :search 
                   OR name_prod LIKE :search 
                   OR description LIKE :search";
+        }
+
+        $stmt = $this->connect()->prepare($query);
+
+        if (!empty($search)) {
+            $stmt->bindValue(':search', "%$search%");
+        }
+
+        $stmt->execute();
+        $row = $stmt->fetch();
+        return $row['total'];
     }
 
-    $stmt = $this->connect()->prepare($query);
+    public function deleteProd($id)
+    {
+        $query = "UPDATE `products` SET `delete_status`= 1 WHERE id_prod = ?";
+        $stmt = $this->connect()->prepare($query);
 
-    if (!empty($search)) {
-        $stmt->bindValue(':search', "%$search%");
+        $result = $stmt->execute(array($id));
+        return $result;
     }
+    public function getProductName($data)
+    {
+        $term = $data;
+        $query = "SELECT name_prod FROM `products` WHERE name_prod LIKE :term";
+        $stmt = $this->connect()->prepare($query);
 
-    $stmt->execute();
-    $row = $stmt->fetch();
-    return $row['total'];
-}
-
-    public function deleteProd($id) {
-    $query = "UPDATE `products` SET `delete_status`= 1 WHERE id_prod = ?";
-    $stmt = $this->connect()->prepare($query);
-
-    $result = $stmt->execute(array($id));
-    return $result;
-}
-
+        $stmt->bindValue(":term", "%$term%");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
 }

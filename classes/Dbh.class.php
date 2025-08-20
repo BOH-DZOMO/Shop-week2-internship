@@ -1,7 +1,7 @@
 <?php
 class Dbh
 {
-    public function connect()
+    protected function connect()
     {
         try {
             $dsn = "mysql:host=localhost;dbname=shop";
