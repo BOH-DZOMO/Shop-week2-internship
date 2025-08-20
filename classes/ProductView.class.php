@@ -38,8 +38,7 @@
                                 Actions
                             </button>
                             <ul class='dropdown-menu'>
-                                <li><a class='dropdown-item d-flex justify-content-around align-items-center' href='#'><span class='fa fa-pen-to-square'></span>Edit</a></li>
-                                <li><a class='dropdown-item d-flex justify-content-evenly align-items-center' href='#'><span class='fa fa-trash'></span>Delete</a></li>
+                                <li onclick='deleteProd({$value["id_prod"]})'><a class='dropdown-item d-flex justify-content-evenly align-items-center' href='#'><span class='fa fa-trash'></span>Delete</a></li>
                             </ul>
                         </div>                        
                         </td>

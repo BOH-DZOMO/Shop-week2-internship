@@ -3,7 +3,7 @@
 declare(strict_types=1);
 class Product extends Dbh
 {
-    public function addProduct(int $user_id, string $code_prod, string $name_prod, string $description, string $image, float $weight, int $cost_price, int $sale_price)
+    protected function addProduct(int $user_id, string $code_prod, string $name_prod, string $description, string $image, float $weight, int $cost_price, int $sale_price)
     {
         try {
             $query = "INSERT INTO products (
@@ -43,7 +43,7 @@ class Product extends Dbh
     }
     public function countProducts()
     {
-        $query = "SELECT COUNT(*) AS total FROM `products`";
+        $query = "SELECT COUNT(*) AS total FROM `products` WHERE delete_status = 0";
         $stmt = $this->connect()->prepare($query);
         $stmt->execute();
         $row = $stmt->fetch();
@@ -52,7 +52,7 @@ class Product extends Dbh
     }
     public function getProductsServerSide($start, $length, $search)
     {
-        $query = "SELECT * FROM products";
+        $query = "SELECT * FROM products WHERE delete_status = 0";
 
         if (!empty($search)) {
             $query .= " WHERE code_prod LIKE :search 
@@ -73,7 +73,7 @@ class Product extends Dbh
     }
 
     public function countFilteredProducts($search) {
-    $query = "SELECT COUNT(*) as total FROM products";
+    $query = "SELECT COUNT(*) as total FROM products WHERE delete_status = 0";
     
     if (!empty($search)) {
         $query .= " WHERE code_prod LIKE :search 
@@ -91,4 +91,13 @@ class Product extends Dbh
     $row = $stmt->fetch();
     return $row['total'];
 }
+
+    public function deleteProd($id) {
+    $query = "UPDATE `products` SET `delete_status`= 1 WHERE id_prod = ?";
+    $stmt = $this->connect()->prepare($query);
+
+    $result = $stmt->execute(array($id));
+    return $result;
+}
+
 }

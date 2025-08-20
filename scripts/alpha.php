@@ -92,10 +92,6 @@ class AlphaPDF extends FPDF
 $pdf = new AlphaPDF();
 $pdf->AddPage();
 
-// $pdf->SetAlpha(0.3);
-// $pdf->Image('68a464f97bd66.jpg',60,90,100);
-// $pdf->SetAlpha(1);
-
 $product = new Product();
 $data = $product->getProducts();
 
@@ -103,7 +99,6 @@ foreach ($data as $key => $value) {
     $x =  $pdf->GetX();
 
     $pdf->Cell(32, 5, $value["code_prod"], 1, "");
-
 
     $pdf->SetXY($x + 32, $pdf->GetY());
     $pdf->Cell(73, 5, $value["name_prod"], 1, "");
@@ -114,7 +109,6 @@ foreach ($data as $key => $value) {
     $pdf->SetXY($x + 130, $pdf->GetY());
     $pdf->Cell(30, 5, $value["cost_price"], 1, "");
 
-
     $pdf->SetXY($x + 160, $pdf->GetY());
     $pdf->Cell(30, 5, $value["sale_price"], 1, "");
     $pdf->Ln();
@@ -123,9 +117,3 @@ foreach ($data as $key => $value) {
 
 $pdf->Output();
 ?>
-
-
-
-<!-- $pdf->SetAlpha(0.3);
-$pdf->Image('68a464f97bd66.jpg',60,90,100);
-$pdf->SetAlpha(1); -->

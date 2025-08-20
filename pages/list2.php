@@ -10,6 +10,7 @@ $view = new ProductView();
 <link rel="stylesheet" href="../assets/css/list.css">
 <link rel="stylesheet" href="../assets/libraries/DataTables/datatables.css">
 <link rel="stylesheet" href="../assets/libraries/Vendor/fontawesome/css/all.css">
+<link rel="stylesheet" href="../node_modules/sweetalert2/dist/sweetalert2.css">
 <script src="../assets/libraries/Vendor/fontawesome/js/all.js"></script>
 </head>
 
@@ -39,30 +40,83 @@ $view = new ProductView();
     <!-- <script src="../assets/libraries/DataTables/datatables.min.js"></script> -->
     <script src="../assets/libraries/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script src="../assets/libraries/DataTables/datatables.js"></script>
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.all.js"></script>
     <script>
         $(document).ready(function() {
             $('#product-table').DataTable({
                 responsive: true,
-                
+
                 ajax: {
                     url: '../scripts/product-server.php',
                     type: 'POST',
+                },
+                columns: [{
+                        data: 'code_prod'
                     },
-                    columns: [
-                        { data: 'code_prod' },
-                        { data: 'name_prod' },
-                        { data: 'description' },
-                        { data: 'image' },
-                        { data: 'weight' },
-                        { data: 'cost_price' },
-                        { data: 'sale_price' },
-                        { data: 'created_at' },
-                        { data: 'actions'}
+                    {
+                        data: 'name_prod'
+                    },
+                    {
+                        data: 'description'
+                    },
+                    {
+                        data: 'image'
+                    },
+                    {
+                        data: 'weight'
+                    },
+                    {
+                        data: 'cost_price'
+                    },
+                    {
+                        data: 'sale_price'
+                    },
+                    {
+                        data: 'created_at'
+                    },
+                    {
+                        data: 'actions'
+                    }
                 ],
-            serverSide: true,
-            processing: true,
+                serverSide: true,
+                processing: true,
             });
         });
+
+        function deleteProd(user_id) {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post("../scripts/deleteProd.php", {
+                            id: user_id
+                        },
+                        function(data) {
+                            console.log(data.status)
+                            if (data.status == "success") {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your file has been deleted.",
+                                    icon: "success"
+                                });
+                                location.reload()
+                            } else {
+                                Swal.fire("An error occured!");
+                            }
+                        },
+                        "json"
+                    );
+                }
+            });
+
+
+        }
     </script>
 </body>
 

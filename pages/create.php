@@ -11,6 +11,8 @@ $view = new ProductView();
 <link rel="stylesheet" href="../assets/libraries/DataTables/datatables.css">
 <link rel="stylesheet" href="../assets/libraries/Vendor/fontawesome/css/all.css">
 <script src="../assets/libraries/Vendor/fontawesome/js/all.js"></script>
+<link rel="stylesheet" href="../assets/libraries/CodeSeven-toastr-2.1.4-7-g50092cc/CodeSeven-toastr-50092cc/build/toastr.min.css">
+
 </head>
 
 <body>
@@ -96,13 +98,32 @@ $view = new ProductView();
     <!-- <script src="../assets/libraries/DataTables/datatables.min.js"></script> -->
     <script src="../assets/libraries/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script src="../assets/libraries/DataTables/datatables.js"></script>
+    <script src="../assets/libraries/CodeSeven-toastr-2.1.4-7-g50092cc/CodeSeven-toastr-50092cc/build/toastr.min.js"></script>
     <script>
-        $.post("url", data,
-            function(data, textStatus, jqXHR) {
+    let url = new URLSearchParams(window.location.search)
+      let status = url.get('task');
+      
+      if (status == "success") {
+  toastr["success"]("Product added succesfully")
 
-            },
-            "dataType"
-        );
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+      }
     </script>
 </body>
 
