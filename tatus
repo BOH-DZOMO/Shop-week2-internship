@@ -1,0 +1,71 @@
+[33mcommit dbedd786c9cbd7fa8d0fe1f8bb753a3f8acf26d3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Wed Aug 20 15:55:16 2025 +0100
+
+    done with select2 still to try pagination
+
+[33mcommit 4a8385ea25e70a309861bb3c9463ef5466e44098[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Wed Aug 20 12:02:46 2025 +0100
+
+    added features for toastr and sweetalert
+
+[33mcommit b913f0d1e12b48199c412f2988a18048aee0728c[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Tue Aug 19 14:01:57 2025 +0100
+
+    added filigrane(alpha pdf opacity)
+
+[33mcommit 602257bf2bd2da34060ff8722d0d9715954ffec1[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Tue Aug 19 12:54:09 2025 +0100
+
+    added product creation with image support
+
+[33mcommit e0cf812714b695164131d756be0150c6aa3283da[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Tue Aug 19 03:52:59 2025 +0100
+
+    removed vendor for fakerphp- guess this should be last adjustment
+
+[33mcommit 566ba9e681c56119ce04691550c311ce6ada3b8b[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Tue Aug 19 03:41:55 2025 +0100
+
+    removed images and libraries folder
+
+[33mcommit 2cfdcc79480a79b43eeeab77d50d2ebc5acf6c85[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Tue Aug 19 03:37:49 2025 +0100
+
+    placed images in ignore
+
+[33mcommit bd79450efccd5696d48e9953392d74789611b58c[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Tue Aug 19 03:36:22 2025 +0100
+
+    commit fix gitignore introduced
+
+[33mcommit 4e9a1367a412418eba9d0623fcba8b32df5b3445[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Tue Aug 19 03:29:50 2025 +0100
+
+    arranged pdf without picture and worked on datatables
+
+[33mcommit 18f2cab5c436d154faf8067c103a12981edb0c72[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Sun Aug 17 01:26:20 2025 +0100
+
+    server-side datatables config done
+
+[33mcommit 112e99494c984f053e45a786b8fa4a284d02a6dc[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Thu Aug 14 11:09:27 2025 +0100
+
+    filling of db-start
+
+[33mcommit 977407cb671a69cb3bd455f6f7600a66ecebd1a6[m
+Author: BOH-DZOMO <bohdzomobobpeter@gmail.com>
+Date:   Tue Aug 12 04:38:07 2025 +0100
+
+    initial setup

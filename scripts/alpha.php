@@ -77,15 +77,18 @@ class AlphaPDF extends FPDF
         $this->Cell(30, 10, "Cost Price", 1, 0, "C");
         $this->Cell(30, 10, "Sale Price", 1, 1, "C");
         $this->SetFont('Courier', '', 10);
+        $this->SetAlpha(0.2);
+        $this->Image('68a464f97bd66.jpg', 60, 90, 100);
+        $this->SetAlpha(1);
     }
     function Footer()
     {
         $this->SetY(-10);
         $this->SetFont('Courier', 'I', 10);
         $this->Cell(0, 10, 'Page ' . $this->PageNo(), 0, 0, 'C');
-        $this->SetAlpha(0.3);
-        $this->Image('68a464f97bd66.jpg', 60, 90, 100);
-        $this->SetAlpha(1);
+        // $this->SetAlpha(0.2);
+        // $this->Image('68a464f97bd66.jpg', 60, 90, 100);
+        // $this->SetAlpha(1);
     }
 }
 

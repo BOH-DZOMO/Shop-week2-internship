@@ -7,16 +7,28 @@ if (!isset($_SESSION["user_id"])) {
 }
 $view = new ProductView();
 ?>
-<link rel="stylesheet" href="../assets/css/create.css">
+<link rel="stylesheet" href="../assets/css/list.css">
 <link rel="stylesheet" href="../assets/libraries/Vendor/fontawesome/css/all.css">
 <script src="../assets/libraries/Vendor/fontawesome/js/all.js"></script>
 <link rel="stylesheet" href="../assets/libraries/CodeSeven-toastr-2.1.4-7-g50092cc/CodeSeven-toastr-50092cc/build/toastr.min.css">
-
 </head>
 
 <body>
-    <main>
-        <form id="productForm" action="../includes/product.inc.php" method="POST" enctype="multipart/form-data">
+    <div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<div class="page-header">
+					<div class="alert alert-info" role="alert">
+						<h4>This demo shows how to integrate JQuery-validation and the Bootstrap framework.</h4>
+						<ul>
+							<li><a href="https://getbootstrap.com/" class="alert-link">Bootstrap home project</a>.</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+
+        <form id="productForm" action="" method="POST" enctype="multipart/form-data">
 
             <div class="mb-3">
                 <label for="code" class="form-label">Code</label>
@@ -117,63 +129,39 @@ $view = new ProductView();
         $(document).ready(function() {
             $("#productForm").validate({
                 errorElement: "em",
-                debug: false,
-                highlight: function(element) {
-                    $(element).addClass("error-input");
-                },
-                unhighlight: function(element) {
-                    $(element).removeClass("error-input");
+                // errorPlacement: function(error, element) {
+                //     // Add the `help-block` class to the error element
+                //     error.addClass("help-block");
 
-                },
+                    // if (element.prop("type") === "checkbox") {
+                    //     error.insertAfter(element.parent("label"));
+                    // } else {
+                    //     error.insertAfter(element);
+                    // }
+                // },
+                // highlight: function(element, errorClass, validClass) {
+                //     $(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
+                // },
+                // unhighlight: function(element, errorClass, validClass) {
+                //     $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
+                // },
                 rules: {
-                    code_prod: {
-                        required: true,
-                        number: true,
-                        minlength: 13,
-                        maxlength: 13,
-
-                    },
+                    code_prod: "required",
                     name_prod: "required",
                     description: "required",
-                    image: {
-                        required: true,
-                        extension: "png|jpg|jpeg",
-                    },
-                    weight: {
-                        required: true,
-                        number: true,
-                    },
-                    cost_price: {
-                        required: true,
-                        number: true,
-                    },
-                    sale_price: {
-                        required: true,
-                        number: true,
-                    },
+                    image: "required",
+                    weight: "required",
+                    cost_price: "required",
+                    sale_price: "required",
                 },
                 messages: {
-                    code_prod: {
-                        required: "please enter the product's code",
-                        number: "Product code must consist of only numbers",
-                        minlength: "it must be 13 digits",
-                        maxlength: "it must be 13 digits"
-                    },
+                    code_prod: "please enter the product's code",
                     name_prod: "please enter the product's name",
                     description: "please enter the product's description",
-                    image:  {
-                        required: "please enter the product's image",
-                        extension: "the required file types are png|jpg|jpeg",
-                    },
+                    image: "please enter the product's image",
                     weight: "please enter the product's weight",
-                    cost_price: {
-                        required: "please enter the product's cost price",
-                        number: "it must be a number",
-                    },
-                    sale_price: {
-                        required: "please enter the product's sale price",
-                        number: "it must be a number",
-                    }
+                    cost_price: "please enter the product's cost price",
+                    sale_price: "please enter the product's sale price",
                 },
 
             })

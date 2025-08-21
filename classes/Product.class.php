@@ -104,7 +104,7 @@ class Product extends Dbh
     public function getProductName($data)
     {
         $term = $data;
-        $query = "SELECT name_prod FROM `products` WHERE name_prod LIKE :term";
+        $query = "SELECT name_prod FROM `products` WHERE name_prod LIKE :term limit 5";
         $stmt = $this->connect()->prepare($query);
 
         $stmt->bindValue(":term", "%$term%");

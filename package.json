@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "jquery-validation": "^1.21.0",
     "sweetalert2": "^11.22.4"
   }
 }

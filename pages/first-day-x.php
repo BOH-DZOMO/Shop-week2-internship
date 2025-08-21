@@ -27,7 +27,7 @@
     </div>
     <br><br>
     <div>
-        <select class="js-data-example-ajax" style="width: 200px;"></select>
+        <select class="js-data-example-ajax" style="width: 250px;"></select>
     </div>
     <script src="../assets/libraries/jquery-ui-1.14.1.custom/external/jquery/jquery.js"></script>
     <script src="../assets/libraries/jquery-ui-1.14.1.custom/jquery-ui.js"></script>
@@ -35,16 +35,19 @@
     <script>
         $("#tags").autocomplete({
             source: "../scripts/autocomplete.php",
-            minLength: 3,
+            minLength: 1,
             select: function(event, ui) {
                 console.log("Selected: " + ui.item.value + " aka " + ui.item.id);
             }
         });
 
         $('.js-data-example-ajax').select2({
+            placeholder: "Select a Product",
+            allowClear: true,
             ajax: {
                 url: '../scripts/autocomplete.php',
                 dataType: 'json',
+                delay: 100,
             }
         });
     </script>
