@@ -43,7 +43,7 @@ $view = new ProductView();
 
             <!-- Weight -->
             <div class="mb-3">
-                <label for="weight" class="form-label">Weight</label>
+                <label for="weight" class="form-label">Weight[g]</label>
                 <input type="text" class="form-control" id="weight" name="weight" placeholder="0.00">
             </div>
 
@@ -51,14 +51,14 @@ $view = new ProductView();
             <!-- Cost Price -->
             <div class="mb-3">
                 <label for="cost" class="form-label">Cost Price[XAF]</label>
-                <input type="text" class="form-control" id="cost" name="cost_price">
+                <input type="number" class="form-control" id="cost" name="cost_price">
             </div>
 
 
             <!-- Sale Price -->
             <div class=" mb-3">
                 <label for="sale" class="form-label">Sale Price[XAF]</label>
-                <input type="text" class="form-control" id="sale" name="sale_price">
+                <input type="number" class="form-control" id="sale" name="sale_price">
             </div>
             <div id="error_log">
                 <?php
@@ -87,6 +87,7 @@ $view = new ProductView();
     </main>
     <script src="../assets/libraries/jquery-ui-1.14.1.custom/external/jquery/jquery.js"></script>
     <script src="../node_modules/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="../node_modules/jquery-validation/dist/additional-methods.js"></script>
     <script src="../assets/libraries/bootstrap-5.0.2-dist/js/bootstrap.bundle.js"></script>
     <script src="../assets/libraries/CodeSeven-toastr-2.1.4-7-g50092cc/CodeSeven-toastr-50092cc/build/toastr.min.js"></script>
     <script>
@@ -117,7 +118,7 @@ $view = new ProductView();
         $(document).ready(function() {
             $("#productForm").validate({
                 errorElement: "em",
-                debug: false,
+                debug: true,
                 highlight: function(element) {
                     $(element).addClass("error-input");
                 },
@@ -137,7 +138,8 @@ $view = new ProductView();
                     description: "required",
                     image: {
                         required: true,
-                        extension: "png|jpg|jpeg",
+                        // extension: "png|jpg|jpeg",
+                        accept: "images/*",
                     },
                     weight: {
                         required: true,
@@ -163,9 +165,13 @@ $view = new ProductView();
                     description: "please enter the product's description",
                     image:  {
                         required: "please enter the product's image",
-                        extension: "the required file types are png|jpg|jpeg",
+                        // extension: "the required file types are png|jpg|jpeg",
+                        accept: "it must be an image",
                     },
-                    weight: "please enter the product's weight",
+                    weight: {
+                        required: "please enter the product's weight",
+                        number: "it must be a number/decimal",
+                    },
                     cost_price: {
                         required: "please enter the product's cost price",
                         number: "it must be a number",
